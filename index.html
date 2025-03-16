@@ -26,7 +26,7 @@
 
       if (lead_id && campaign_id && status) {
         // Send an HTTP request to update the database
-        fetch(" https://tomatoes-mason-mills-expanded.trycloudflare.com/update-visit", {
+        fetch("https://tomatoes-mason-mills-expanded.trycloudflare.com/update-visit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ lead_id, campaign_id, status })
