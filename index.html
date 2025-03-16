@@ -22,22 +22,22 @@
       const urlParams = new URLSearchParams(window.location.search);
       const lead_id = urlParams.get('lead_id');
       const campaign_id = urlParams.get('campaign_id');
-      const status = urlParams.get('status');
+      let status = urlParams.get('status');
 
-      if (lead_id && campaign_id && status) {
+      if (!status) status = "Visited";  // Default status if not provided
+
+      if (lead_id && campaign_id) {  // Proceed if lead_id and campaign_id are present
         // Send an HTTP request to update the database
         fetch("https://hobby-playlist-rv-decade.trycloudflare.com/update-visit", {
           method: "POST",
+          mode: 'no-cors',   // Prevents CORS errors, but you won't get a response back
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ lead_id, campaign_id, status })
         }).then(response => {
-          if (response.ok) {
-            console.log("Tracking data sent successfully.");
-          } else {
-            console.error("Failed to send tracking data.");
-          }
+          console.log("Tracking data sent successfully.");
         }).catch(error => console.error("Error:", error));
       }
     </script>
 </body>
 </html>
+
