@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Awesome Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>Welcome to my GitHub Pages website. Tracking is active!</p>
+
+    <script>
+      // Extract query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const lead_id = urlParams.get('lead_id');
+      const campaign_id = urlParams.get('campaign_id');
+      const status = urlParams.get('status');
+
+      if (lead_id && campaign_id && status) {
+        // Send an HTTP request to update the database
+        fetch("https://intersection-prev-damage-course.trycloudflare.com/update-visit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ lead_id, campaign_id, status })
+        }).then(response => {
+          if (response.ok) {
+            console.log("Tracking data sent successfully.");
+          } else {
+            console.error("Failed to send tracking data.");
+          }
+        }).catch(error => console.error("Error:", error));
+      }
+    </script>
+</body>
+</html>
