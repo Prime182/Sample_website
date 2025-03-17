@@ -26,7 +26,7 @@
 
   if (lead_id && campaign_id) {
     // Send an HTTP request to update the database
-    fetch("https://politics-xhtml-roommates-su.trycloudflare.com/webhook-test/update-visit", {
+    fetch("https://politics-xhtml-roommates-su.trycloudflare.com/webhook/4t7WUlXPwHJHNl17/update-visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ lead_id, campaign_id, status })
